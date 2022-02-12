@@ -20,8 +20,14 @@
             convertible: false,
             mileage: 88000,
             started: false,
+            fuel: 0,
             start: function () {
+                if (this.fuel > 0) {
+
                 this.started = true;
+                } else {
+                    alert("The car is on empty, fill up before starting!")
+                }
             },
             stop: function () {
                 this.started = false;
@@ -29,37 +35,44 @@
             },
             drive: function () {
                 if (this.started) {
-                 alert("zoom, zoom")
+                 if (this.fuel > 0) {
+                     alert(this.make + " " + this.model + ' goes zoom zoom');
+                     this.fuel = this.fuel -1;
+                 }
                 } else {
-                    alert("You need to start the engine!")
+                    alert("Uh oh, out of fuel.")
+                    this.stop();
                 }
+            },
+            addFuel: function(amount) {
+                this.fuel = this.fuel + amount;
             }
         }
 
-        // fiat.drive();
+        fiat.start();
 
-        var eightBall = {
-            index: 0,
-            advice: ["yes", "no", "maybe", "not a chance"],
-            shake: function () {
-                this.index = this.index + 1;
-                if (this.index >= this.advice.length) {
-                    this.index = 0;
-                }
-            },
-            look : function () {
-                return this.advice[this.index];
-            }
-        };
+//         var eightBall = {
+//             index: 0,
+//             advice: ["yes", "no", "maybe", "not a chance"],
+//             shake: function () {
+//                 this.index = this.index + 1;
+//                 if (this.index >= this.advice.length) {
+//                     this.index = 0;
+//                 }
+//             },
+//             look : function () {
+//                 return this.advice[this.index];
+//             }
+//         };
 
-eightBall.shake();
-console.log(eightBall.look());
-eightBall.shake();
-console.log(eightBall.look());
-eightBall.shake();
-console.log(eightBall.look());
-eightBall.shake();
-console.log(eightBall.look());
+// eightBall.shake();
+// console.log(eightBall.look());
+// eightBall.shake();
+// console.log(eightBall.look());
+// eightBall.shake();
+// console.log(eightBall.look());
+// eightBall.shake();
+// console.log(eightBall.look());
 
 
     </script>
